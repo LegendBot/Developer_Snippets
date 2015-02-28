@@ -28,11 +28,11 @@ function AutoLevel:__init(table)
 			end
 			self.LastLeveled = GetHeroLeveled()
 		elseif #self.LevelSequence == 18 then
-			local SpellLevel = GetHeroLeveled()
-			if myHero.level > SpellLevel and self.LevelSequence[SpellLevel + 1] ~= nil then
-				local SpellToLevel = self.LevelSequence[SpellLevel + 1]
-				if SpellToLevel >= 1 and SpellToLevel <= 4 then
-					self:LevelSpell(self.SpellSlots[SpellToLevel])
+			self.LastLeveled = GetHeroLeveled()
+			if myHero.level > self.LastLeveled and self.LevelSequence[self.LastLeveled + 1] ~= nil then
+				self.SpellToLevel = self.LevelSequence[self.LastLeveled + 1]
+				if self.SpellToLevel >= 1 and self.SpellToLevel <= 4 then
+					self:LevelSpell(self.SpellSlots[self.SpellToLevel])
 				end
 			end
 		end
