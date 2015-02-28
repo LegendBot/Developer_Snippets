@@ -4,6 +4,7 @@
 ]]
 
 AddLoadCallback(function()
+	if not VIP_USER then return end
 	--AutoLevel({_R,_Q,_E,_W}) --[[Example #1]]
 	--AutoLevel({1,3,1,2,1,4,1,2,1,2,4,2,2,3,3,4,3,3}) --[[Example #2]]
 	print("Loaded")
@@ -19,7 +20,7 @@ function AutoLevel:__init(table)
 	AddTickCallback(function()
 		if os.clock() < (self.clock or 0) then return end
 		self.clock = os.clock() + math.random(0.5,2)
-		if #self.LevelSequence <= 4 then
+		if #self.LevelSequence == 4 then
 			if myHero.level > self.LastLeveled then
 				self:LevelSpell(self.LevelSequence[1])
 				self:LevelSpell(self.LevelSequence[2])
