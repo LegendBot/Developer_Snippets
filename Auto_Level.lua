@@ -15,7 +15,7 @@ function AutoLevel:__init(table)
 	self.clock = os.clock()
 	self.LastLeveled = GetHeroLeveled()
 	self.LevelSequence = table
-	self.offsets = {[_Q] = 0x83, [_W] = 0x08, [_E] = 0xB5, [_R] = 0xEC,}
+	self.offsets = {[_Q] = 0x75, [_W] = 0xFE, [_E] = 0x52, [_R] = 0x40}
 	self.SpellSlots = {SPELL_1, SPELL_2, SPELL_3, SPELL_4}
 	AddTickCallback(function()
 		if os.clock() < (self.clock or 0) then return end
@@ -41,17 +41,17 @@ function AutoLevel:__init(table)
 end
 
 function AutoLevel:LevelSpell(ID)
-	local p = CLoLPacket(0x009A)
-	p.vTable = 0xF246E0
+	local p = CLoLPacket(0x012D)
+	p.vTable = 0xDF5388
 	p:EncodeF(myHero.networkID)
-	p:Encode4(0x5A5A5A5A)
-	p:Encode1(0x46)
-	p:Encode4(0xD5D5D5D5)
-	p:Encode1(self.offsets[ID])
-	p:Encode4(0x07070707)
-	p:Encode1(0xF8)
-	p:Encode1(0xEA)
-	p:Encode1(0x0C)
+	p:Encode1(offsets[id])
+	p:Encode4(0x65656565)
+	p:Encode4(0x51515151)
+	p:Encode1(0x50)
+	p:Encode4(0x63636363)
+	p:Encode1(0x00)
+	p:Encode1(0x00)
+	p:Encode1(0x00)
 	p:Encode2(0x0000)
 	SendPacket(p)
 end
