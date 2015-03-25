@@ -6,18 +6,18 @@ if not VIP_USER then return end
 print("LevelSpell override is active")
 
 _G.LevelSpell = function(id)
-	local offsets = {[_Q] = 0x75, [_W] = 0xFE, [_E] = 0x52, [_R] = 0x40}
-	local p = CLoLPacket(0x012D)
-	p.vTable = 0xDF5388
+	local offsets = {[_Q] = 0x7F, [_W] = 0x5B, [_E] = 0x5F, [_R] = 0x6B}
+	local p = CLoLPacket(0x012A)
+	p.vTable = 0xE912D0
 	p:EncodeF(myHero.networkID)
+	p:Encode4(0xA7A7A7A7)
+	p:Encode1(0xCA)
 	p:Encode1(offsets[id])
-	p:Encode4(0x65656565)
-	p:Encode4(0x51515151)
-	p:Encode1(0x50)
-	p:Encode4(0x63636363)
-	p:Encode1(0x00)
-	p:Encode1(0x00)
-	p:Encode1(0x00)
+	p:Encode4(0xCACACACA)
+	p:Encode4(0x00000000)
+	p:Encode1(0x00) --Game specific byte
+	p:Encode1(0x00) --Game specific byte
+	p:Encode1(0x00) --Game specific byte
 	p:Encode2(0x0000)
 	SendPacket(p)
 end
