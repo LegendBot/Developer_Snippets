@@ -2,6 +2,7 @@
   Just run this script along with your other scripts if you wish for LevelSpell to work.
   This only works if you are VIP unfortunately.
 ]]
+
 if not VIP_USER then return end
 print("LevelSpell override is active")
 
