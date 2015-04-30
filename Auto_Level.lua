@@ -58,4 +58,4 @@ function AutoLevel:LevelSpell(ID)
 	SendPacket(p)
 end
 
---[[Updated for 5.7 - 2015-04-08]]
+--[[Updated for 5.8 - 2015-04-30]]
