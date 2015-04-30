@@ -2,7 +2,6 @@
   Just run this script along with your other scripts if you wish for LevelSpell to work.
   This only works if you are VIP unfortunately.
 ]]
-
 if not VIP_USER then return end
 print("LevelSpell override is active")
 
@@ -16,10 +15,7 @@ _G.LevelSpell = function(id)
 	p:Encode4(0xD8D8D8D8)
 	p:Encode1(0xEC)
 	p:Encode4(0x0E0E0E0E)
-	p:Encode1(0x00)
-	p:Encode1(0x00)
-	p:Encode1(0x00)
-	p:Encode1(0x00)
+	p:Encode4(0x00000000)
 	p:Encode1(0x00)
 	SendPacket(p)
 end
