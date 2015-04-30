@@ -16,3 +16,5 @@ AddLoadCallback(function()
 	print("Anti-Afk: Please remember that you can still be reported and banned.")
 	_AntiAfk()
 end)
+
+--[[Updated for 5.8 - 2015-04-30]]
