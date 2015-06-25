@@ -6,7 +6,7 @@
 AddLoadCallback(function()
 	if not VIP_USER then return end
 	--AutoLevel({_R,_Q,_E,_W}) --[[Example #1]]
-	--AutoLevel({1,3,1,2,1,4,1,2,1,2,4,2,2,3,3,4,3,3}) --[[Example #2]]
+	AutoLevel({1,3,1,2,1,4,1,2,1,2,4,2,2,3,3,4,3,3}) --[[Example #2]]
 	print("Loaded")
 end)
 
@@ -40,18 +40,23 @@ function AutoLevel:__init(table)
 end
 
 function AutoLevel:LevelSpell(id)
-	local offsets = {[_Q] = 0x70, [_W] = 0xB0, [_E] = 0xF0, [_R] = 0x30,}
-	local p = CLoLPacket(0x0023)
-	p.vTable = 0xE23A7C
+	local offsets = {
+		[_Q] = {0xFF, 0x06},
+		[_W] = {0xF7, 0x05},
+		[_E] = {0xEF, 0x03},
+		[_R] = {0xE7, 0x02},
+	}
+	local p = CLoLPacket(0x00A2)
+	p.vTable = 0xF57E54
 	p:EncodeF(myHero.networkID)
-	p:Encode4(0xBEBEBEBE)
-	p:Encode4(0x16161616)
-	p:Encode1(0x6B)
-	p:Encode4(0x7C7C7C7C)
-	p:Encode1(offsets[id])
+	p:Encode4(0x8D8D8D8D)
+	p:Encode1(offsets[id][1])
+	p:Encode4(0x6F6F6F6F)
+	p:Encode1(0x08)
+	p:Encode4(0xB1B1B1B1)
+	p:Encode1(offsets[id][2])
 	p:Encode4(0x00000000)
-	p:Encode1(0x00)
 	SendPacket(p)
 end
 
---[[Updated for 5.11 - 2015-06-10]]
+--[[Updated for 5.12 - 2015-06-26]]
