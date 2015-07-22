@@ -7,22 +7,21 @@ print("LevelSpell override is active")
 
 _G.LevelSpell = function(id)
 	local offsets = {
-		[_Q] = {0x7D, 0x07},
-		[_W] = {0x12, 0x06},
-		[_E] = {0x76, 0x05},
-		[_R] = {0x9C, 0x04},
+		[_Q] = 0xAA,
+		[_W] = 0xAB,
+		[_E] = 0xAC,
+		[_R] = 0xAD,
 	}
-	local p = CLoLPacket(0x00A2)
-	p.vTable = 0xF72190
+	local p = CLoLPacket(0x009C)
+	p.vTable = 0xEE6D00
 	p:EncodeF(myHero.networkID)
-	p:Encode1(offsets[id][1])
-	p:Encode4(0xA4A4A4A4)
-	p:Encode4(0x4C4C4C4C)
-	p:Encode1(0xE2)
-	p:Encode4(0x48484848)
-	p:Encode1(offsets[id][2])
-	p:Encode4(0x00000000)
+	for i = 1, 4 do	p:Encode1(0xB4)	end
+	for i = 1, 4 do	p:Encode1(0x69)	end
+	for i = 1, 4 do p:Encode1(0x09)	end
+	p:Encode1(offsets[id])
+	p:Encode1(0xE4)
+	p:Encode1(0x00)
+	for i = 1, 4 do	p:Encode1(0x00) end
 	SendPacket(p)
 end
-
---[[Updated for 5.13 - 2015-07-11]]
+--[[Updated for 5.14 - 2015-07-22]]
