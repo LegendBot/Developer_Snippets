@@ -10,7 +10,7 @@ return end
 print("LevelSpell override is active")
 _G.LevelSpell = function(id)
 	local offsets = {
-		[_Q] = 0XB9,
+		[_Q] = 0xB9,
 		[_W] = 0xBD,
 		[_E] = 0xD9,
 		[_R] = 0xDD,
