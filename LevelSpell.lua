@@ -16,7 +16,7 @@ _G.LevelSpell = function(id)
 		[_R] = 0xDD,
 	}
 	local p = CLoLPacket(0x0043)
-	p.vTable = 0xE07758
+	p.vTable = 0xDE9D68
 	p:EncodeF(myHero.networkID)
 	p:Encode1(0x2E)
 	for i = 1, 4 do	p:Encode1(0x9F)	end
@@ -28,4 +28,4 @@ _G.LevelSpell = function(id)
 	SendPacket(p)
 end
 
---[[Updated for 5.15 - 2015-08-05]]
+--[[Updated for 5.15 - 2015-08-06]]
