@@ -23,7 +23,7 @@ _G.LevelSpell = function(id)
 	p:Encode1(0x28)
 	p:Encode1(0xEC)
 	p:Encode1(0x1B)
-	for i = 1, 2 do	p:Encode1(0x00)	end
+	p:Encode1(0x00)
 	SendPacket(p)
 end
 --[[Updated for 5.16 - 2015-08-20]]
