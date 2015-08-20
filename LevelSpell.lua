@@ -2,30 +2,28 @@
   Just run this script along with your other scripts if you wish for LevelSpell to work.
   This only works if you are VIP unfortunately.
 ]]
-
-if not VIP_USER then
-	_G.LevelSpell = function() print("LevelSpell only works for VIP users") end
-return end
-
+if not VIP_USER then _G.LevelSpell = function() end return end
 print("LevelSpell override is active")
+
 _G.LevelSpell = function(id)
 	local offsets = {
-		[_Q] = 0xB9,
-		[_W] = 0xBD,
-		[_E] = 0xD9,
-		[_R] = 0xDD,
+		[_Q] = 0x07,
+		[_W] = 0x0B,
+		[_E] = 0x03,
+		[_R] = 0x0C,
 	}
-	local p = CLoLPacket(0x0043)
-	p.vTable = 0xDE9D68
+	local p = CLoLPacket(0x00A9)
+	p.vTable = 0xFB572C
 	p:EncodeF(myHero.networkID)
-	p:Encode1(0x2E)
-	for i = 1, 4 do	p:Encode1(0x9F)	end
-	for i = 1, 4 do	p:Encode1(0x9B)	end
+	for i = 1, 4 do	p:Encode1(0x04)	end
+	for i = 1, 4 do	p:Encode1(0xBD)	end
 	p:Encode1(offsets[id])
-	for i = 1, 4 do	p:Encode1(0x72)	end
-	p:Encode1(myHero.level-myHero:GetSpellData(_Q).level-myHero:GetSpellData(_W).level-myHero:GetSpellData(_E).level-myHero:GetSpellData(_R).level)
-	for i = 1, 4 do	p:Encode1(0x00)	end
+	for i = 1, 4 do	p:Encode1(0x89)	end
+	p:Encode1(0x1C)
+	p:Encode1(0x28)
+	p:Encode1(0xEC)
+	p:Encode1(0x1B)
+	for i = 1, 2 do	p:Encode1(0x00)	end
 	SendPacket(p)
 end
-
---[[Updated for 5.15 - 2015-08-06]]
+--[[Updated for 5.16 - 2015-08-20]]
